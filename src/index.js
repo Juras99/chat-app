@@ -1,22 +1,32 @@
+const path = require('path')
 const http = require('http')
 const express = require('express')
-const path = require('path')
 const socketio = require('socket.io')
 
-const port = 8000
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+const port = process.env.PORT || 8000
+const publicDirectoryPath = path.join(__dirname, '../public')
 
-app.use(express.static(path.resolve(__dirname, '../public')))
+app.use(express.static(publicDirectoryPath))
 
-io.on('connection', () => {
+io.on('connection', socket => {
   console.log('New WebSocket connection')
+
+  socket.emit('message', 'Welcome!')
+  socket.broadcast.emit('message', 'A new user has joined!')
+
+  socket.on('sendMessage', message => {
+    io.emit('message', message)
+  })
+
+  socket.on('disconnect', () => {
+    io.emit('message', 'A user has left!')
+  })
 })
 
 server.listen(port, () => {
-  console.log('Server is up on port ' + port)
+  console.log(`Server is up on port ${port}!`)
 })
