@@ -29,6 +29,11 @@ io.on('connection', socket => {
     socket.emit('message', generateMessage('Admin', 'Witaj!'))
     socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} dołączył do pokoju`))
 
+    io.to(user.room).emit('roomData', {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    })
+
     callback()
   })
 
@@ -50,6 +55,10 @@ io.on('connection', socket => {
 
     if (user) {
       io.to(user.room).emit('message', generateMessage('Admin', `${user.username} opuścił pokój!`))
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      })
     }
   })
 
