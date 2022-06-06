@@ -26,8 +26,8 @@ io.on('connection', socket => {
 
     socket.join(user.room)
 
-    socket.emit('message', generateMessage('Admin', 'Witaj!'))
-    socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} dołączył do pokoju`))
+    socket.emit('welcomeMessage', generateMessage('Admin', `Dołączyłeś do pokoju`))
+    socket.broadcast.to(user.room).emit('welcomeMessage', generateMessage('Admin', `${user.username} dołączył do pokoju`))
 
     io.to(user.room).emit('roomData', {
       room: user.room,
@@ -55,7 +55,7 @@ io.on('connection', socket => {
     const user = removeUser(socket.id)
 
     if (user) {
-      io.to(user.room).emit('message', generateMessage('Admin', `${user.username} opuścił pokój!`))
+      io.to(user.room).emit('welcomeMessage', generateMessage('Admin', `${user.username} opuścił pokój!`))
       io.to(user.room).emit('roomData', {
         room: user.room,
         users: getUsersInRoom(user.room),

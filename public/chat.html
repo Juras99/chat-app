@@ -93,9 +93,11 @@
       </div>
       <div class="inline w-full p-10 h-7">
         <form id="message-form">
-          <input class="w-3/4 px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" name="message" placeholder="Wiadomość" required autocomplete="off">
-          <button class="px-5 py-2 text-white transition duration-300 rounded-md shadow-md bg-chat-purple"><i class="fas fa-share"></i></button>
-          <button id="send-location" class="px-5 py-2 text-white transition duration-300 rounded-md shadow-md bg-chat-purple"><i class="fas fa-location-dot"></i></button>
+          <div class="flex flex-row space-x-3">
+            <input class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" name="message" placeholder="Wiadomość" required autocomplete="off">
+            <button class="px-5 py-2 text-white transition duration-300 rounded-md shadow-md bg-chat-purple"><i class="fas fa-share"></i></button>
+            <button id="send-location" class="px-5 py-2 text-white transition duration-300 rounded-md shadow-md bg-chat-purple"><i class="fas fa-location-dot"></i></button>
+          </div>
         </form>
 
       </div>
@@ -125,12 +127,16 @@
   </div>
 </script>
 
+<script id="welcome-message-template" type="text/html">
+  <div class="justify-center py-2 text-xs text-center">{{message}}</div>
+</script>
+
 <script id="location-template" type="text/html">
   <div class="">
     <p>
       <span class="text-xs">{{username}} {{createdAt}}</span>
     </p>
-    <span class="inline-block max-w-xl px-4 py-2 mr-5 overflow-hidden text-gray-600 underline break-words bg-gray-300 rounded-lg rounded-bl-none">
+    <span class="inline-block max-w-xl px-4 py-2 mr-5 overflow-hidden text-gray-600 break-words bg-gray-300 rounded-lg rounded-bl-none">
       <a href="{{url}}" target="_blank"><i class="fas fa-location-dot"></i> Moja lokalizacja</a>
     </span>
   </div>
@@ -143,18 +149,27 @@
     </p>
   </div>
   <div class="flex justify-end">
-    <span class="inline-block max-w-xl px-4 py-2 overflow-hidden text-white break-words rounded-lg rounded-br-none bg-chat-purple"><a href="{{url}}" target="_blank">[Moja lokalizacja]</a></span>
+    <span class="inline-block max-w-xl px-4 py-2 overflow-hidden text-white break-words rounded-lg rounded-br-none bg-chat-purple">
+      <a href="{{url}}" target="_blank"><i class="fas fa-location-dot"></i> Moja lokalizacja</a>
+    </span>
   </div>
 </script>
 
 <script id="sidebar-template" type="text/html">
-  <h2 class="">{{room}}</h2>
-  <h3 class="">Użytkownicy</h3>
-  <ul class="">
-    {{#users}}
-      <li>{{username}}</li>
-    {{/users}}
-  </ul>
+  <div class="mx-3 mt-5">
+    <p>Rozmawiasz w pokoju:</p>
+    <p class="">{{room}}</p>
+    <div class="mt-5">
+      <p class="">Użytkownicy online:</p>
+      <ul class="flex flex-col">
+        {{#users}}
+          <div class="flex flex-row">
+            <div class="pr-2 my-auto"><i class="text-xs fas fa-circle text-chat-green"></i></div> {{username}}
+          </div>
+        {{/users}}
+      </ul>
+    </div>
+  </div>
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>

@@ -9,6 +9,7 @@ module.exports = {
         'chat-grey': '#9194A2',
         'chat-white': '#f7f7f7',
         'chat-shadow-blue': '#7286A0',
+        'chat-green': '#00a110',
       },
     },
     fontFamily: {
