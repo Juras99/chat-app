@@ -12,6 +12,7 @@ const $messages = document.querySelector('#messages')
 const messageTemplate = document.querySelector('#message-template').innerHTML
 const myMessageTemplate = document.querySelector('#my-message-template').innerHTML
 const locationTemplate = document.querySelector('#location-template').innerHTML
+const myLocationTemplate = document.querySelector('#my-location-template').innerHTML
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
 // Options
@@ -66,6 +67,17 @@ socket.on('myMessage', message => {
 socket.on('locationMessage', message => {
   console.log(message)
   const html = Mustache.render(locationTemplate, {
+    username: message.username,
+    url: message.url,
+    createdAt: moment(message.createdAt).format('HH:mm:ss'),
+  })
+  $messages.insertAdjacentHTML('beforeend', html)
+  autoscroll()
+})
+
+socket.on('myLocationMessage', message => {
+  console.log(message)
+  const html = Mustache.render(myLocationTemplate, {
     username: message.username,
     url: message.url,
     createdAt: moment(message.createdAt).format('HH:mm:ss'),
