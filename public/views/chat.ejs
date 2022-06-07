@@ -159,7 +159,7 @@
   <div class="mx-3 mt-5">
     <p>Rozmawiasz w pokoju:</p>
     <p class="">{{room}}</p>
-    <div class="mt-5">
+    <div class="relative mt-5">
       <p class="">Użytkownicy online:</p>
       <ul class="flex flex-col">
         {{#users}}
@@ -169,6 +169,12 @@
         {{/users}}
       </ul>
     </div>
+    <form action="/" method="post">
+      <input class="hidden" name="username" type="text" placeholder="" value="{{user}}" required>
+      <button class="absolute bottom-0 py-2 text-white transition duration-300 rounded-md shadow-md px-7 mb-7 bg-chat-red">
+        Opuść pokój <i class="pl-2 text-xs fas fa-arrow-right-from-bracket"></i>
+      </button>
+    </form>
   </div>
 </script>
 

@@ -15,16 +15,24 @@ const port = process.env.PORT || 8000
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../public/views')
 
+app.use(express.urlencoded({ extended: false }))
 app.use(express.static(publicDirectoryPath))
 
 app.set('view engine', 'ejs')
 app.set('views', viewsPath)
 
 app.get('/', (req, res) => {
-  res.render('index')
+  const username = ''
+  res.render('index', { username })
+})
+
+app.post('/', function (req, res) {
+  const username = req.body.username
+  res.render('index', { username })
 })
 
 app.get('/chat', (req, res) => {
+  console.log(req.body)
   res.render('chat')
 })
 
@@ -44,6 +52,7 @@ io.on('connection', socket => {
 
     io.to(user.room).emit('roomData', {
       room: user.room,
+      user: user.username,
       users: getUsersInRoom(user.room),
     })
 
