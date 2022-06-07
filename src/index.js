@@ -46,7 +46,7 @@ app.post('/', function (req, res) {
 })
 
 app.get('/chat', (req, res) => {
-  console.log(req.body)
+  console.log(req.body.username)
   res.render('chat')
 })
 

@@ -12,6 +12,18 @@ const addUser = ({ id, username, room }) => {
     }
   }
 
+  if (username.length >= 20) {
+    return {
+      error: 'Nazwa użytkownika nie może być dłuższa niż 20',
+    }
+  }
+
+  if (room.length >= 20) {
+    return {
+      error: 'Nazwa pokoju nie może być dłuższa niż 20',
+    }
+  }
+
   // Check for existing user
 
   const existingUser = users.find(user => {
