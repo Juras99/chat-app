@@ -1088,6 +1088,14 @@ input[type="range"]::-ms-fill-lower {
   padding-left: 0.5rem;
 }
 
+.pr-3 {
+  padding-right: 0.75rem;
+}
+
+.pr-6 {
+  padding-right: 1.5rem;
+}
+
 .text-center {
   text-align: center;
 }

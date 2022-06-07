@@ -26,8 +26,8 @@ const autoscroll = () => {
 
   // Height of the new message
   const newMessageStyles = getComputedStyle($newMessage)
-  const newMessageMargin = parseInt(newMessageStyles.marginBottom)
-  const newMessageHeight = $newMessage.offsetHeight + newMessageMargin
+  // const newMessageMargin = parseInt(newMessageStyles.marginBottom)
+  const newMessageHeight = $newMessage.offsetHeight + 24
 
   // Visible height
   const visibleHeight = $messages.offsetHeight
@@ -73,7 +73,6 @@ socket.on('welcomeMessage', message => {
     createdAt: moment(message.createdAt).format('HH:mm:ss'),
   })
   $messages.insertAdjacentHTML('beforeend', html)
-  autoscroll()
 })
 
 socket.on('locationMessage', message => {
