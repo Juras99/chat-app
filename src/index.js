@@ -3,6 +3,7 @@ const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
 const Filter = require('bad-words')
+const ejs = require('ejs')
 const { generateMessage, generateLocationMessage } = require('./utils/messages')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
 
@@ -12,8 +13,20 @@ const io = socketio(server)
 
 const port = process.env.PORT || 8000
 const publicDirectoryPath = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, '../public/views')
 
 app.use(express.static(publicDirectoryPath))
+
+app.set('view engine', 'ejs')
+app.set('views', viewsPath)
+
+app.get('/', (req, res) => {
+  res.render('index')
+})
+
+app.get('/chat', (req, res) => {
+  res.render('chat')
+})
 
 io.on('connection', socket => {
   console.log('New WebSocket connection')

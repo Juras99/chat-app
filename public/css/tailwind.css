@@ -486,19 +486,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .mt-14 {
@@ -515,10 +510,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
 }
 
 .mt-4 {
@@ -577,10 +568,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-full {
   width: 100%;
-}
-
-.w-3\/4 {
-  width: 75%;
 }
 
 .max-w-xl {
@@ -753,11 +740,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.75rem;
 }
 
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-}
-
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -768,10 +750,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pr-2 {
   padding-right: 0.5rem;
-}
-
-.pr-3 {
-  padding-right: 0.75rem;
 }
 
 .text-center {
@@ -833,11 +811,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-chat-green {
   --tw-text-opacity: 1;
   color: rgb(0 161 16 / var(--tw-text-opacity));
-}
-
-.underline {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
 }
 
 .shadow-md {
