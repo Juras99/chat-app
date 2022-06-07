@@ -7,6 +7,7 @@ module.exports = {
         'chat-red': '#F71735',
         'chat-blue': '#011627',
         'chat-grey': '#9194A2',
+        'chat-lightgrey': '#cfcfcf',
         'chat-white': '#f7f7f7',
         'chat-shadow-blue': '#7286A0',
         'chat-green': '#00a110',
@@ -25,5 +26,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
 }

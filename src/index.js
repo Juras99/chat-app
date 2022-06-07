@@ -23,12 +23,26 @@ app.set('views', viewsPath)
 
 app.get('/', (req, res) => {
   const username = ''
-  res.render('index', { username })
+  const room = ''
+  const disabled = ''
+  const enabled = 'disabled'
+  res.render('index', { username, room, disabled, enabled })
+})
+
+app.get('/join/:room', (req, res) => {
+  const username = ''
+  const room = req.params.room
+  const disabled = 'disabled'
+  const enabled = ''
+  res.render('index', { username, room, disabled, enabled })
 })
 
 app.post('/', function (req, res) {
   const username = req.body.username
-  res.render('index', { username })
+  const room = req.body.room
+  const disabled = ''
+  const enabled = 'disabled'
+  res.render('index', { username, room, disabled, enabled })
 })
 
 app.get('/chat', (req, res) => {

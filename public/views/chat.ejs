@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/tailwind.css">
   <title>Chat App</title>
+
 </head>
 
 <body>
@@ -169,6 +170,15 @@
         {{/users}}
       </ul>
     </div>
+
+    <div class="relative flex flex-col mt-5">
+      <p class="">Zaproś znajomych:</p>
+      <div class="flex flex-row mt-2 space-x-1">
+        <input id="share-link" value="https://juras99-chat-app.herokuapp.com/join/{{room}}" size="13" class="px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" name="share-link" placeholder="" autocomplete="off" disabled>
+        <button data-bs-toggle="tooltip" data-bs-placement="left" title="Kopiuj do schowka" onclick="copylink()" class="px-3 py-2 text-white transition duration-300 rounded-md shadow-md bg-chat-purple"><i class="fas fa-clipboard"></i></button>
+      </div>
+    </div>
+
     <form action="/" method="post">
       <input class="hidden" name="username" type="text" placeholder="" value="{{user}}" required>
       <button class="absolute bottom-0 py-2 text-white transition duration-300 rounded-md shadow-md px-7 mb-7 bg-chat-red">
@@ -183,5 +193,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/chat.js"></script>
+
+<script>
+  function copylink() {
+    /* Get the text field */
+    var copyText = document.getElementById('share-link')
+    console.log(copyText)
+
+    /* Select the text field */
+    copyText.select()
+    copyText.setSelectionRange(0, 99999) /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value)
+
+    /* Alert the copied text */
+    alert('Skopiowano do schowka: ' + copyText.value)
+  }
+</script>
+
+<script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+    return new Tooltip(tooltipTriggerEl);
+  });
+</script>
 
 </html>
