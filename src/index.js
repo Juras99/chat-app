@@ -66,9 +66,11 @@ io.on('connection', socket => {
 
     io.to(user.room).emit('roomData', {
       room: user.room,
-      user: user.username,
+      user: getUser(socket.id).username,
       users: getUsersInRoom(user.room),
     })
+
+    console.log(username)
 
     callback()
   })

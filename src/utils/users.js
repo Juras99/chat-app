@@ -12,7 +12,7 @@ const addUser = ({ id, username, room }) => {
     }
   }
 
-  if (username.length >= 20) {
+  if (username.length > 20) {
     return {
       error: 'Nazwa użytkownika nie może być dłuższa niż 20',
     }
